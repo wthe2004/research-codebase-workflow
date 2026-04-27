@@ -1,5 +1,7 @@
 # Source Control
 
+> See also [`pr-workflow.md`](pr-workflow.md) for the project-level branching model (`main` + `dev` double-trunk), branch protection, and the full PR lifecycle (precis template + full checklist report). This document covers the per-branch conventions; `pr-workflow.md` covers how branches compose into a release flow.
+
 ## Naming Branches
 
 Here's an example of a branch naming convention:
@@ -18,6 +20,3 @@ E.g. the following pattern will exclude all files with the extension `.private.c
 *.private.config
 ```
 
-For more details on proper management of credentials and secrets in source control, and handling an accidental commit of secrets to source control, please refer to the [Secrets Management](../CI-CD/dev-sec-ops/secrets-management/README.md) document which has further information, split by language as well.
-
-As an extra security measure, apply [credential scanning](../CI-CD/dev-sec-ops/secrets-management/credential_scanning.md) in your CI/CD pipeline.
