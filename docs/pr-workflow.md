@@ -2,6 +2,8 @@
 
 This document describes my project-level conventions for organizing branches and pull requests, and how I work with AI assistants (Claude Code, GitHub Copilot review) inside that flow. It complements the unit-level templates in `templates/` (plan, PR checklist, docs checklist).
 
+> **Note about this repo specifically.** `research-codebase-workflow` is a personal documentation repo — it has no code, no CI, no collaborators. The branching / branch-protection / PR-review conventions described below are the playbook I apply to **research project repos**, not to this meta repo. For this repo, I push directly to `main`; no feature branches, no PRs, no review required. AI assistants working in this repo may push straight to `main` without asking. This carve-out applies only to `research-codebase-workflow` itself.
+
 ## 1. Branching model
 
 I use a double-trunk model:
