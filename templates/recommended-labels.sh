@@ -37,6 +37,7 @@ gh label create "scope:eval"      --color "5319e7" --description "Eval pipeline 
 gh label create "scope:paths"     --color "5319e7" --description "Path / config handling (project-local; customize)" "${GH_OPTS[@]}" || true
 gh label create "scope:ci"        --color "5319e7" --description "CI / build automation"                       "${GH_OPTS[@]}" || true
 gh label create "scope:data-prep" --color "5319e7" --description "Data preparation (project-local; customize)" "${GH_OPTS[@]}" || true
+gh label create "scope:docs"      --color "5319e7" --description "Documentation (README, ADRs, reproduction map, site)" "${GH_OPTS[@]}" || true
 
 echo
 echo "Done. Verify via: gh label list ${GH_OPTS[*]}"

@@ -1,5 +1,13 @@
 # Docs Checklist
 
+This checklist is for **auditing** docs you wrote. For **writing** new docs from scratch, start with one of the templates and then come back here to review:
+
+- New project / fresh README → `readme-template.md`
+- Non-trivial design decision → `adr-template.md` (each ADR is its own file under `docs/adrs/<NNNN>-<slug>.md`)
+- Paper results / reproducibility map → `reproduction-map-template.md`
+
+For docs site rendering, see `pr-workflow.md` "Optional: docs site generator" — MkDocs Material is the recommended choice for Python research repos.
+
 ---
 
 ## Anti-patterns sweep — read your diff against these 8

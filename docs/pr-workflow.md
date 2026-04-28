@@ -178,9 +178,22 @@ The `scope:*` labels in the script are examples (`eval`, `paths`, `ci`, `data-pr
 ## See also
 
 - `docs/source-control-minimal-cv-research.md` — minimal source-control conventions (branch naming, secrets handling). The branching model in §1 above is consistent with that file.
-- `templates/pull_request_template.md` — canonical PR description template; copy into `.github/pull_request_template.md` during setup.
-- `templates/issue-templates/deferred-work.md` — canonical issue template for deferred work; copy into `.github/ISSUE_TEMPLATE/deferred-work.md` during setup.
+
+### Setup-time templates (copy into project)
+
+- `templates/pull_request_template.md` — canonical PR description template; copy into `.github/pull_request_template.md`.
+- `templates/issue-templates/deferred-work.md` — canonical issue template for deferred work; copy into `.github/ISSUE_TEMPLATE/deferred-work.md`.
 - `templates/recommended-labels.sh` — `gh label create` script for the recommended label set.
+- `templates/readme-template.md` — README skeleton for a research repo.
+- `templates/adr-template.md` — Architecture Decision Record template; one ADR per non-trivial decision under `docs/adrs/<NNNN>-<slug>.md`.
+- `templates/reproduction-map-template.md` — table mapping every paper result to a deterministic command + checkpoint + seed + log.
+
+### Process checklists (consult during work)
+
 - `templates/pr-checklist.md` — the full ~110-item checklist walked in §3.2 step 3.
 - `templates/docs-checklist.md` — anti-pattern sweep for any markdown docs touched.
-- `templates/plan-mini.md` and `templates/plan-standard.md` — planning templates used **before** writing code, not part of this PR-time workflow. Plans live in `docs/plans/<YYYYMMDD_HHMMSS>_<slug>.md` per the project's CLAUDE.md.
+- `templates/plan-mini.md` and `templates/plan-standard.md` — planning templates used **before** writing code. Plans live in `docs/plans/<YYYYMMDD_HHMMSS>_<slug>.md` per the project's CLAUDE.md.
+
+### Optional: docs site generator
+
+When the project's docs grow beyond a single README, **MkDocs Material** is the recommended static site generator for it does not rely on `Node.js`.
