@@ -67,13 +67,14 @@ Recommended precis template:
 
 For every PR after PR 0:
 
-1. Branch off `dev` with a `[type]/<name>` name.
-2. Implement the change. Commit with a clear message.
-3. Walk the full `templates/pr-checklist.md` (~110 items). For each item, mark **applicable / N/A with reason / concerns**. Every claim of the form "command X passes" must be backed by an actual run of X recorded in the report — no fabrication.
-4. Save the checklist report to `docs/prs/<branch-with-slashes-replaced-by-dashes>-<YYYYMMDD_HHMMSS>.md`. Get the timestamp at PR creation time via `date +%Y%m%d_%H%M%S`. The report is a per-PR audit artifact; it stays with the project even after the PR's web view is archived.
-5. Push the feature branch and open the GitHub PR. The precis template auto-loads; fill it in.
-6. Triage any review feedback (see §5 for AI-assisted handling).
-7. Merge via "Create a merge commit". Delete the feature branch.
+1. Open a GitHub issue describing the feature / fix / chore first. The issue is the unit of intent — it captures the goal, scope, and any open questions before any code is written. Even one-line issues are fine; the point is having a stable URL to point the branch and PR at.
+2. Branch off `dev` with a `[type]/<name>` name. Link the branch to the issue via GitHub's "Create a branch" button on the issue page (preferred), or by including `#<issue-number>` in the branch's first commit / PR description so GitHub auto-links them. The PR should close the issue on merge via a `Closes #<n>` line in the PR body.
+3. Implement the change. Commit with a clear message.
+4. Walk the full `templates/pr-checklist.md` (~110 items). For each item, mark **applicable / N/A with reason / concerns**. Every claim of the form "command X passes" must be backed by an actual run of X recorded in the report — no fabrication.
+5. Save the checklist report to `docs/prs/<branch-with-slashes-replaced-by-dashes>-<YYYYMMDD_HHMMSS>.md`. Get the timestamp at PR creation time via `date +%Y%m%d_%H%M%S`. The report is a per-PR audit artifact; it stays with the project even after the PR's web view is archived.
+6. Push the feature branch and open the GitHub PR. The precis template auto-loads; fill it in. Include `Closes #<issue-number>` in the body so the linked issue closes on merge.
+7. Triage any review feedback (see §5 for AI-assisted handling).
+8. Merge via "Create a merge commit". Delete the feature branch.
 
 ### 3.3 Two-layer review
 

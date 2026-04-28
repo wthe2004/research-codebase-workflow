@@ -11,6 +11,8 @@ Run through this checklist before submitting any pull request.
 - [ ] No reading from disk in unit tests
 - [ ] No third-party API calls in unit tests
 - [ ] Documentation updated to match the changes
+- [ ] No dead code (unused imports, unreachable branches, orphan functions/classes, commented-out code blocks, leftover debug prints, unused variables/parameters)
+- [ ] No hardcoded values unless truly necessary — paths, hyperparameters, magic numbers, URLs, device IDs, dataset roots, and seeds are pulled from config files, CLI args, or environment variables; if a literal must stay inline, justify it with a brief comment
 
 ## Unit Tests
 
