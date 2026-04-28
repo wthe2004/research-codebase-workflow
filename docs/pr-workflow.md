@@ -36,7 +36,7 @@ The very first PR on a fresh repo adds `.github/pull_request_template.md`. This 
 
 The template is the **precis** version of the full checklist: four short sections that get filled out for every PR. The full checklist (`templates/pr-checklist.md`) is the **deeper** audit that lives separately (see §3.3).
 
-Recommended precis template:
+Canonical source: [`templates/pull_request_template.md`](../templates/pull_request_template.md). Copy it into the project's `.github/pull_request_template.md` during setup; replace the `<test command>` and `<lint command>` placeholders with the project's actual runners (e.g. `uv run pytest tests/`, `uv run ruff check .`). The template content for reference:
 
 ```markdown
 ## Summary
@@ -86,6 +86,16 @@ For every PR after PR 0:
 Why both: the precis is fast to read and write, but easy to skip thoroughly. The full report forces a deliberate pass through 110 items including all the ML/CV-specific concerns (data loaders, output shape, train-loop sanity, reproducibility, etc.). The precis is the human-readable summary; the report is the audit trail.
 
 If the project has not yet enabled `docs/` for tracking, the report is still written, just into a gitignored area until a later PR narrows the gitignore.
+
+### 3.4 Issue templates
+
+Per §3.2 step 1, every PR is preceded by a GitHub issue. To keep those issues consistent, the project's `.github/ISSUE_TEMPLATE/` directory should hold one or more templates that GitHub auto-loads when users click "New issue".
+
+The minimum useful template is one for **deferred work** — tech debt, refactor opportunities, or scheduled future tasks surfaced during code review. It forces six sections: **Source / What / Why deferred / Trigger / Approach / Related**. The "Why deferred + Trigger" pair is what distinguishes a deferred-work item from a generic todo: it answers "what conditions should re-prioritize this?" rather than just "what should be done?".
+
+Canonical source: [`templates/issue-templates/deferred-work.md`](../templates/issue-templates/deferred-work.md). Copy into `.github/ISSUE_TEMPLATE/deferred-work.md` during project setup. The default `labels:` field in the frontmatter assumes the recommended label set from §6.
+
+Other issue templates (bug-report, feature-request) can be added as needed; the `templates/issue-templates/` directory in this playbook is intentionally extensible.
 
 ## 4. Style conventions for prose
 
@@ -146,9 +156,31 @@ When the AI is **organizing** pre-existing human work (e.g. batching uncommitted
 
 The boundary is "did the AI generate the code being committed". Generation gets credit; organizing does not.
 
+## 6. Recommended labels
+
+Issues and PRs are labeled along three orthogonal dimensions:
+
+- **`priority:{high,medium,low}`** — how soon the work should be addressed
+- **`type:{tech-debt,refactor,cleanup,scheduled}`** — what kind of work it is
+- **`scope:*`** — which area of the project (project-specific; e.g. `scope:eval`, `scope:ci`, `scope:data-prep`)
+
+Apply 1 priority + 1 type + 1-N scope per issue. The default `labels:` in `templates/issue-templates/deferred-work.md` (`type:tech-debt`) is the most-common starting point; the issue author overrides as needed.
+
+To create the recommended label set on a fresh repo, run [`templates/recommended-labels.sh`](../templates/recommended-labels.sh) (idempotent — re-running after some labels exist will not fail). The script auto-detects the current repo via `gh`, or accepts an explicit `<owner>/<repo>` argument:
+
+```bash
+bash templates/recommended-labels.sh                   # current repo
+bash templates/recommended-labels.sh wthe2004/foo      # explicit
+```
+
+The `scope:*` labels in the script are examples (`eval`, `paths`, `ci`, `data-prep`); rename / remove / extend per project.
+
 ## See also
 
 - `docs/source-control-minimal-cv-research.md` — minimal source-control conventions (branch naming, secrets handling). The branching model in §1 above is consistent with that file.
+- `templates/pull_request_template.md` — canonical PR description template; copy into `.github/pull_request_template.md` during setup.
+- `templates/issue-templates/deferred-work.md` — canonical issue template for deferred work; copy into `.github/ISSUE_TEMPLATE/deferred-work.md` during setup.
+- `templates/recommended-labels.sh` — `gh label create` script for the recommended label set.
 - `templates/pr-checklist.md` — the full ~110-item checklist walked in §3.2 step 3.
 - `templates/docs-checklist.md` — anti-pattern sweep for any markdown docs touched.
 - `templates/plan-mini.md` and `templates/plan-standard.md` — planning templates used **before** writing code, not part of this PR-time workflow. Plans live in `docs/plans/<YYYYMMDD_HHMMSS>_<slug>.md` per the project's CLAUDE.md.
