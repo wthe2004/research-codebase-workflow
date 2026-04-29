@@ -1,6 +1,7 @@
-Note that usually a standard plan is enough.
 Before implementing, write a plan and store it in ./docs/plans/ with the filename "[feature/bug/hotfix]/<title>/timestamp"
 Note that when writing the plan, avoid tables and use subheadings instead.
+
+Use [Caveman language](../docs/caveman-language.md) to write the plan.
 
 Before writing the plan, check if the corresponding issue and branch is created.
 
@@ -14,8 +15,9 @@ The plan must include:
 
 2. Implementation Steps
 
+- First, write one paragraph that describes how you design the overall changes.
 - Briefly describe the implementation in steps. Note that each step should be around 50 lines, no more than 100 lines, and definitely not more than 200 lines of code.
-- Each step should be a checkpoint for code review, so it is human-in-loop. Implement each step after the previous step is approved.
+- Each step should be a checkpoint for code review, so it is human-in-loop. Commit after human approval. Implement each step after the previous step is approved. 
 
 3. Files to Modify
 
@@ -48,3 +50,22 @@ The plan must include:
 - What does each test verify?
 - Cover at least the happy path and one failure or edge case.
 - If no test is added, explain why.
+
+## PR lifecycle integration
+
+When this plan is implemented through a draft PR (one PR holding all the
+step commits), the AI MUST automatically mark the PR ready-for-review
+(`gh pr ready <num>`) immediately after the final step's commit lands and
+the PR description has been updated to reflect "all steps complete". Do
+not wait for the user to manually flip the draft toggle — once the last
+step finishes, the PR is by definition no longer a work-in-progress.
+
+The user retains the merge decision separately (the AI never runs
+`gh pr merge`); marking ready-for-review only changes the GitHub draft
+flag, it does not finalize anything. Treat it as a natural part of the
+final step's commit-and-wrap-up turn, not a separate state-change gate.
+
+If the plan is implemented via N independent PRs instead of one PR per
+step, this rule applies to whichever PR is the last to land for each
+step (i.e. each PR's own final commit triggers ready-for-review for
+that PR).
