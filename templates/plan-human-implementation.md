@@ -17,7 +17,9 @@ The plan must include:
 
 - First, write one paragraph that describes how you design the overall changes.
 
-Than, we have a very detailed implementation steps. Each step should be estimated to take around 50 lines of code.
+Than, we have a very detailed implementation steps. 
+
+Each step should be estimated to take around 50 lines of code. And inside each step, to help human student write the code, you should break a step into smaller sub-steps that are around 5-10 lines of code.
 
 During each step, the plan includes:
 
