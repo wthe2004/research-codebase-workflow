@@ -21,6 +21,10 @@ Use English for all text written to disk / pushed to GitHub.
 
 Please refer to [`docs/caveman-language.md`](docs/caveman-language.md) for the style guide.
 
+## Shell scripts
+
+Shell stay thin: derive paths, hold defaults, call Python. See [`docs/shell-script-design.md`](docs/shell-script-design.md).
+
 ## Carve-out for this meta-repo
 
 Note that for this meta-repo the workflow is simplified because it is docs only. I directly commit to `main`.
