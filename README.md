@@ -10,7 +10,7 @@ Personal playbook for research + paper reproduction. Practices, checklists, temp
 ## Implementing a change
 
 1. Create a github issue that describes the problem and the expected behavior after the change.
-2. According to the issue, write a plan according to the template in `templates/plan-standard.md` or `templates/plan-human-implementation.md`, and save it to `docs/plans/`.
+2. According to the issue, write a plan according to the template in `templates/plan-human-implementation.md` (human implementation, default) or `templates/plan-checklist-driven.md` (checklist-driven, for agent implementation), and save it to `docs/plans/` as `<YYYYMMDD>_<HHMMSS>_<slug>[_human].md` so directory listings sort chronologically.
 3. Create a branch off `dev` with the name `[type]/<issue-number>-<title>`, and push the plan to the branch.
 4. After implementation, push the change to the branch, and open a PR.
 5. After the PR is manually merged, delete the branch.

@@ -1,5 +1,5 @@
 In this plan template, the human will implement the plan.
-Before implementing, write a plan and store it in ./docs/plans/ with the filename "[feature/bug/hotfix]/<title>/timestamp_human"
+Before implementing, write a plan and store it in ./docs/plans/ with the filename `YYYYMMDD_HHMMSS_<title>_human.md` (timestamp-first per PR #66).
 Note that when writing the plan, avoid tables and use subheadings instead.
 Use [Caveman language](../docs/caveman-language.md) to write the plan.
 
@@ -11,13 +11,16 @@ The plan must include:
 
 - What problem are we solving?
 - What is the expected behavior after the change?
+- What is the cyclomatic-complexity budget?
+    - All new or modified functions must land at radon CC rank **A or B** (CC ≤ 10).
+    - Functions already at C+ rank that are NOT touched by this change may stay; functions that ARE touched must come down to B or better in the same PR.
 - What is out of scope?
 
 2. Implementation Steps
 
 - First, write one paragraph that describes how you design the overall changes.
 
-Than, we have a very detailed implementation steps. 
+Then, we have very detailed implementation steps.
 
 Each step should be estimated to take around 50 lines of code. And inside each step, to help human student write the code, you should break a step into smaller sub-steps that are around 5-10 lines of code.
 
@@ -39,6 +42,7 @@ Note that any implementation should be followed by a test plan.
 - What does each test verify?
 - Cover at least the happy path and one failure or edge case.
 - If no test is added, explain why.
+- Complexity regression check: `python -m radon cc <changed-files> -nc -s` outputs nothing for files touched in this PR. `python -m radon mi <changed-modules> -nb -s` confirms no module drops to MI rank C or worse.
 
 And for each step, Check:
 - API / Dependency Check
@@ -48,6 +52,7 @@ And for each step, Check:
     - Are there any hard-coded values, monkey patches, mocks, or temporary workarounds? Avoid as much as possible, and if necessary explain why.
     - Could this break existing behavior?
     - Does this touch data, config, permissions, database schema, or external APIs?
+    - Complexity budget: will any function in this step exceed CC=10 (radon B rank) after implementation? If yes, plan the split inline — do NOT defer to a follow-up PR. Verify with `python -m radon cc <file> -nc -s`; expected output is empty (no C+ rank functions).
 
 ## PR lifecycle integration
 
