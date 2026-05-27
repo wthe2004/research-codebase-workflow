@@ -25,6 +25,16 @@ Please refer to [`docs/caveman-language.md`](docs/caveman-language.md) for the s
 
 Shell stay thin: derive paths, hold defaults, call Python. See [`docs/shell-script-design.md`](docs/shell-script-design.md).
 
+## Agent experiment logs
+
+When an agent launches or changes a training, evaluation, rendering, or sweep command that produces research artifacts, it must create a small replayable command log under the project using [`templates/experiment-log-agent-template.md`](templates/experiment-log-agent-template.md):
+
+```text
+docs/exp-log-agent/<YYYYMMDD_HHMMSS>_<short-slug>.sh
+```
+
+The log captures the exact command, environment, working directory, inputs, outputs, hardware assumptions, and run status. It is a review/audit artifact, not a dump of stdout, checkpoints, metrics blobs, credentials, or private tokens.
+
 ## Carve-out for this meta-repo
 
 Note that for this meta-repo the workflow is simplified because it is docs only. I directly commit to `main`.

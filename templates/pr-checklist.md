@@ -70,6 +70,7 @@ Run through this checklist before submitting any pull request.
 
 - [ ] Virtual environment configuration files are up to date (`requirements.txt`, `environment.yml`, or `pyproject.toml`)
 - [ ] Experiments are logged with all required details (dataset names and versions, parameters, code, environment)
+- [ ] Agent-run experiment commands are recorded in `docs/exp-log-agent/` using `templates/experiment-log-agent-template.md`
 - [ ] Folder structure is consistent with the agreed project structure
 - [ ] `.gitignore` correctly excludes data, models, and local artifacts
 - [ ] Notebooks are stored and versioned according to the agreed convention (e.g. output stripped)
